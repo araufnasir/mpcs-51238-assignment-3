@@ -11,7 +11,8 @@ type Props = InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> & {
 };
 
 /** A ruled line, like a form on paper. A double heavy rule marks an invalid field. */
-const control = `w-full rounded-none border-0 border-b border-ln-text bg-transparent px-1 py-2 text-lg text-ln-text placeholder:italic placeholder:text-ln-muted
+// mt-2 leaves room for the 3px offset and 2px width of the focus ring above the control.
+const control = `mt-2 w-full rounded-none border-0 border-b border-ln-text bg-transparent px-1 py-2 text-lg text-ln-text placeholder:italic placeholder:text-ln-muted
   hover:bg-ln-surface focus:bg-ln-surface ${focusRing} aria-invalid:border-b-[3px] aria-invalid:border-double aria-invalid:border-ln-accent`;
 
 export default function Field({ label, error, hint, multiline, rows = 3, className = "", ...props }: Props) {
