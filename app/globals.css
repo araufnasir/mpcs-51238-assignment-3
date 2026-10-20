@@ -1,26 +1,25 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Liner Notes design tokens (warm, considered, editorial), ported as plain theme values.
+ * Contrast on Paper and Card stock: Ink 14:1, Rule 5.0:1, Oxblood 7.0:1, so all four read as body text.
+ * Spacing uses Tailwind's default scale: p-5 for cards and buttons, py-2.5 for button height, space-y-6 between sections.
+ */
+@theme {
+  --color-ln-background: #f3ebdc; /* Paper */
+  --color-ln-surface: #fbf7ee; /* Card stock */
+  --color-ln-text: #231c16; /* Ink */
+  --color-ln-muted: #6e6254; /* Rule */
+  --color-ln-accent: #8c2f1b; /* Oxblood: primary actions and errors only */
+  --color-ln-accent-strong: color-mix(in srgb, var(--color-ln-accent) 80%, black);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-ln: var(--face-ln), serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ln-background);
+  color: var(--color-ln-text);
+  font-family: var(--font-ln);
 }
