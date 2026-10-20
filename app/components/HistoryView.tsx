@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import { formatMinutes } from "@/lib/format";
+import { formatMinutes, plural } from "@/lib/format";
 import { startOfWeek } from "@/lib/streak";
 import { useSessions } from "@/lib/useSessions";
 import SessionList from "./SessionList";
@@ -11,7 +11,7 @@ import { Toast, useToast } from "./Toast";
 import { focusRing, type } from "./type";
 
 export default function HistoryView() {
-  const { ready, sessions, today, weekMinutes, remove } = useSessions();
+  const { ready, sessions, today, weekMinutes, weekSessions, remove } = useSessions();
   const { message, show } = useToast();
   const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -32,7 +32,9 @@ export default function HistoryView() {
           History
         </h1>
         {sessions.length > 0 && (
-          <p className={`${type.body} mt-2 text-ln-muted`}>This week: {formatMinutes(weekMinutes)}</p>
+          <p className={`${type.body} mt-2 text-ln-muted`}>
+            This week: {formatMinutes(weekMinutes)} · {plural(weekSessions, "session")}
+          </p>
         )}
         <Toast message={message} className="mt-2 min-h-[1.375rem]" />
       </div>
