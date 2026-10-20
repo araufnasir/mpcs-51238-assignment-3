@@ -1,7 +1,7 @@
 import { computeStreak } from "./streak";
 import type { Session, Streak } from "./streak";
 
-export const FIRST_SESSION_MESSAGE = "First session logged. Come back tomorrow to start a streak.";
+export const FIRST_SESSION_MESSAGE = "First session logged. Come back tomorrow to keep your streak going.";
 
 const MILESTONES: Record<number, string> = {
   3: "Three days in a row. A habit is forming!",
