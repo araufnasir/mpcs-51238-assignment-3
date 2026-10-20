@@ -289,6 +289,8 @@ Same live app, same goal (**"Log three study sessions this week"**), new browser
 8. **There is still no goal or "done" state** for "three sessions". The count helps, but nothing says "3 of 3". This was left out on purpose.
 9. **Unchanged from before:** no editing a session, no export or clear, and Recent shows only three sessions.
 
+Items 1 (first-session toast wording) and 5 (History session count) were fixed after this pass in `3342399` and `d423145`; the rest are listed under "Left for later".
+
 **Did the new features break anything?** Not that I could find. On the first screen the subject chips and the longer messages move the Log button down by 50 to 72 px, but it still ends well inside 844 px. On desktop it ends at 780 to 782 px of 800, so there is very little spare room there. My own script briefly saw duplicate chips on `/log`. That was the previous page staying hidden in the page after a client-side route change, not something a user sees. I confirmed that only one form and one set of chips is visible.
 
 **What the second pass cannot say.** Whether the encouragement messages feel right or are noise, whether the chips are found without being told, and whether the phone layout holds on real devices. Those need real people and real phones.
