@@ -1,7 +1,7 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ComponentProps } from "react";
 import { focusRing, type } from "./type";
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+type Props = ComponentProps<"button"> & {
   variant?: "primary" | "secondary";
   size?: "md" | "sm";
 };

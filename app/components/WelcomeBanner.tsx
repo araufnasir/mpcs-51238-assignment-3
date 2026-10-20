@@ -11,11 +11,11 @@ function message({ state, count }: Streak): { heading: string; body: string } {
     case "new":
       return { heading: "Start your streak today.", body: "Log your first session below." };
     case "active":
-      return { heading: `${plural(count, "day")} streak.`, body: "You're done for today." };
+      return { heading: `${count}-day streak.`, body: "You're done for today." };
     case "at-risk":
       return {
         heading: "Welcome back!",
-        body: `${plural(count, "day")} streak. Log a session today to keep it.`,
+        body: `${count}-day streak. Log a session today to keep it.`,
       };
     case "broken":
       return {
@@ -32,8 +32,11 @@ export default function WelcomeBanner({ streak, last, today }: Props) {
 
   return (
     <Card aria-label="Welcome" data-streak-state={streak.state}>
-      <h2 className={type.heading}>{heading}</h2>
-      <p className={`${type.body} mt-2`}>{body}</p>
+      {/* Stays mounted, so logging a session announces the new streak message. */}
+      <div role="status">
+        <h2 className={type.heading}>{heading}</h2>
+        <p className={`${type.body} mt-2`}>{body}</p>
+      </div>
       {last && (
         <p className={`${type.bodySmall} mt-3 text-ln-muted`}>
           Last time: {formatMinutes(last.minutes)} of {last.subject}, {when}.

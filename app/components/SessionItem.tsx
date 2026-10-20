@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { formatMinutes } from "@/lib/format";
 import type { Session } from "@/lib/streak";
 import Button from "./Button";
@@ -10,6 +10,21 @@ type Props = { session: Session; onDelete?: (id: string) => void };
 
 export default function SessionItem({ session, onDelete }: Props) {
   const [confirming, setConfirming] = useState(false);
+  const deleteRef = useRef<HTMLButtonElement>(null);
+  const restoreFocus = useRef(false);
+
+  // Cancelling swaps the confirm back for the Delete button, so focus returns to it.
+  useEffect(() => {
+    if (!confirming && restoreFocus.current) {
+      restoreFocus.current = false;
+      deleteRef.current?.focus();
+    }
+  }, [confirming]);
+
+  function cancel() {
+    restoreFocus.current = true;
+    setConfirming(false);
+  }
 
   return (
     <li className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3 border-b border-ln-muted py-4 last:border-b-0">
@@ -25,18 +40,28 @@ export default function SessionItem({ session, onDelete }: Props) {
 
       {onDelete &&
         (confirming ? (
-          <div role="group" aria-label={`Delete ${session.subject}?`} className="flex items-center gap-2">
+          <div
+            role="group"
+            aria-label={`Delete ${session.subject}?`}
+            className="flex items-center gap-2"
+            onKeyDown={(e) => e.key === "Escape" && cancel()}
+          >
             <span className={type.bodySmall}>Delete?</span>
             <Button size="sm" variant="primary" onClick={() => onDelete(session.id)}>
               Yes
             </Button>
             {/* Focus lands on the safe choice when the confirm appears. */}
-            <Button size="sm" autoFocus onClick={() => setConfirming(false)}>
+            <Button size="sm" autoFocus onClick={cancel}>
               No
             </Button>
           </div>
         ) : (
-          <Button size="sm" aria-label={`Delete ${session.subject}, ${formatMinutes(session.minutes)}`} onClick={() => setConfirming(true)}>
+          <Button
+            ref={deleteRef}
+            size="sm"
+            aria-label={`Delete ${session.subject}, ${formatMinutes(session.minutes)}`}
+            onClick={() => setConfirming(true)}
+          >
             Delete
           </Button>
         ))}
