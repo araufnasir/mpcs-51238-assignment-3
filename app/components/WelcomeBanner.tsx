@@ -1,10 +1,9 @@
-import { formatMinutes, plural } from "@/lib/format";
-import { formatDayLabel } from "@/lib/streak";
-import type { Session, Streak } from "@/lib/streak";
+import { plural } from "@/lib/format";
+import type { Streak } from "@/lib/streak";
 import Card from "./Card";
 import { type } from "./type";
 
-type Props = { streak: Streak; last?: Session; today: string };
+type Props = { streak: Streak };
 
 function message({ state, count }: Streak): { heading: string; body: string } {
   switch (state) {
@@ -25,10 +24,8 @@ function message({ state, count }: Streak): { heading: string; body: string } {
   }
 }
 
-export default function WelcomeBanner({ streak, last, today }: Props) {
+export default function WelcomeBanner({ streak }: Props) {
   const { heading, body } = message(streak);
-  const day = last ? formatDayLabel(last.date, today) : "";
-  const when = day === "Today" || day === "Yesterday" ? day.toLowerCase() : `on ${day}`;
 
   return (
     <Card aria-label="Welcome" data-streak-state={streak.state}>
@@ -37,11 +34,6 @@ export default function WelcomeBanner({ streak, last, today }: Props) {
         <h2 className={type.heading}>{heading}</h2>
         <p className={`${type.body} mt-2`}>{body}</p>
       </div>
-      {last && (
-        <p className={`${type.bodySmall} mt-3 text-ln-muted`}>
-          Last time: {formatMinutes(last.minutes)} of {last.subject}, {when}.
-        </p>
-      )}
     </Card>
   );
 }

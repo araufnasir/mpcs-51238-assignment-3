@@ -38,7 +38,7 @@ export default function TodayView() {
   return (
     <div className="space-y-5 sm:space-y-8">
       <h1 className="sr-only">Today</h1>
-      <WelcomeBanner streak={streak} last={sessions[0]} today={today} />
+      <WelcomeBanner streak={streak} />
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4">
         <StatCard label="This week" value={formatMinutes(weekMinutes)} note={plural(weekSessions, "session")} />
