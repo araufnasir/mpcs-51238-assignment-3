@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
+import { logMessage } from "@/lib/encouragement";
 import { recentSubjects } from "@/lib/subjects";
 import { useSessions } from "@/lib/useSessions";
 import { EMPTY_VALUES, validateField, validateSession } from "@/lib/validation";
@@ -13,6 +14,7 @@ import { Toast, useToast } from "./Toast";
 import { type } from "./type";
 
 const QUICK_MINUTES = [15, 25, 45, 60];
+const LONG_MESSAGE = 34;
 
 type Props = {
   /** Subject, minutes and chips only. The full form also has notes. */
@@ -29,6 +31,13 @@ export default function SessionForm({ compact = false, autoFocus = false }: Prop
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
+  const messageRow = useRef<HTMLDivElement>(null);
+
+  // On a short phone screen a long message wraps below the button, past the bottom edge.
+  // "nearest" scrolls only when something is cut off.
+  useEffect(() => {
+    if (message) messageRow.current?.scrollIntoView({ block: "nearest" });
+  }, [message]);
 
   // Before the first submit, fields stay quiet. After a failed submit, they re-check as you type.
   function update(name: FieldName, value: string) {
@@ -54,12 +63,13 @@ export default function SessionForm({ compact = false, autoFocus = false }: Prop
       return;
     }
 
-    if (!add(result.value).ok) {
+    const saved = add(result.value);
+    if (!saved.ok || !saved.session) {
       setFormError("Couldn't save. Your browser may be blocking storage.");
       return;
     }
 
-    show(`Logged ${result.value.minutes} min of ${result.value.subject}`);
+    show(logMessage(saved.session, sessions));
     setValues((v) => ({ ...v, minutes: "", notes: "" }));
     setErrors({});
     setSubmitted(false);
@@ -157,11 +167,15 @@ export default function SessionForm({ compact = false, autoFocus = false }: Prop
           </p>
         )}
 
-        <div className="flex min-h-11 items-center gap-3">
+        {/* A short message sits beside the button. A long one gets its own line on phones. */}
+        <div ref={messageRow} className="flex min-h-11 scroll-mb-4 flex-wrap items-center gap-x-3 gap-y-2">
           <Button type="submit" variant="primary" className="shrink-0">
             Log session
           </Button>
-          <Toast message={message} className="min-w-0 flex-1" />
+          <Toast
+            message={message}
+            className={message.length > LONG_MESSAGE ? "min-w-0 flex-1 max-sm:w-full max-sm:flex-none" : "min-w-0 flex-1"}
+          />
         </div>
       </form>
     </>

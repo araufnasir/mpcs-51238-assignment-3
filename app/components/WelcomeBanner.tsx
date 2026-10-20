@@ -1,3 +1,4 @@
+import { milestoneMessage } from "@/lib/encouragement";
 import { plural } from "@/lib/format";
 import type { Streak } from "@/lib/streak";
 import Card from "./Card";
@@ -8,8 +9,13 @@ function message({ state, count }: Streak): { heading: string; body: string } {
   switch (state) {
     case "new":
       return { heading: "Start your streak today.", body: "Log your first session below." };
-    case "active":
-      return { heading: `${count}-day streak.`, body: "You're done for today." };
+    case "active": {
+      const milestone = milestoneMessage({ state, count });
+      return {
+        heading: `${count}-day streak.`,
+        body: milestone ? `${milestone} You're done for today.` : "You're done for today.",
+      };
+    }
     case "at-risk":
       return {
         heading: "Welcome back!",

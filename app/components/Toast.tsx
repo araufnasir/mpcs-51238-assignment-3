@@ -10,7 +10,7 @@ import { type } from "./type";
 export function Toast({ message, className = "" }: { message: string; className?: string }) {
   return (
     <div role="status" aria-live="polite" className={className}>
-      {message && <p className={`${type.bodySmall} line-clamp-2 border-l-2 border-ln-text pl-3`}>{message}</p>}
+      {message && <p className={`${type.bodySmall} border-l-2 border-ln-text pl-3`}>{message}</p>}
     </div>
   );
 }
