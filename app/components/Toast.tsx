@@ -3,11 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { type } from "./type";
 
-/** The region stays mounted so screen readers announce each new message. */
-export function Toast({ message }: { message: string }) {
+/**
+ * An in-flow message, so it never covers content. The caller places it where the user is
+ * already looking. The region stays mounted so screen readers announce each new message.
+ */
+export function Toast({ message, className = "" }: { message: string; className?: string }) {
   return (
-    <div role="status" aria-live="polite" className="pointer-events-none fixed inset-x-0 bottom-6 flex justify-center px-5">
-      {message && <p className={`${type.bodySmall} bg-ln-text px-4 py-3 text-ln-background`}>{message}</p>}
+    <div role="status" aria-live="polite" className={className}>
+      {message && <p className={`${type.bodySmall} line-clamp-2 border-l-2 border-ln-text pl-3`}>{message}</p>}
     </div>
   );
 }

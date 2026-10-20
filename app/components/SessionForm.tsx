@@ -125,11 +125,13 @@ export default function SessionForm({ compact = false, autoFocus = false }: Prop
           </p>
         )}
 
-        <Button type="submit" variant="primary">
-          Log session
-        </Button>
+        <div className="flex min-h-11 items-center gap-3">
+          <Button type="submit" variant="primary" className="shrink-0">
+            Log session
+          </Button>
+          <Toast message={message} className="min-w-0 flex-1" />
+        </div>
       </form>
-      <Toast message={message} />
     </>
   );
 }

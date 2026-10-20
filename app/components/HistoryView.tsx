@@ -34,6 +34,7 @@ export default function HistoryView() {
         {sessions.length > 0 && (
           <p className={`${type.body} mt-2 text-ln-muted`}>This week: {formatMinutes(weekMinutes)}</p>
         )}
+        <Toast message={message} className="mt-2 min-h-[1.375rem]" />
       </div>
 
       {sessions.length > 0 && !thisWeek && <p className={type.body}>Nothing logged this week yet.</p>}
@@ -52,7 +53,6 @@ export default function HistoryView() {
           </>
         }
       />
-      <Toast message={message} />
     </div>
   );
 }
