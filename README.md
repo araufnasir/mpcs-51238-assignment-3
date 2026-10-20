@@ -202,35 +202,47 @@ I used the live app at <https://mpcs-51238-assignment-3-green.vercel.app> as a b
 - Editing a session (out of scope on purpose; delete is the only fix for a typo).
 - Any way to export or clear all data.
 
-### Suggested priorities (not done)
+### Suggested priorities
 
-1. Show a sessions-this-week count, replacing the "Weeks start on Monday" note.
-2. On phones, put the quick log first or shrink the stat cards, so the form and button fit on the first screen.
-3. Add the "stored in this browser" note.
-4. Merge or trim the repeated streak and last-session text, and explain how Log differs from Today (or drop the second form).
-5. Subject suggestions, toast position on phones, and touch target sizes.
+1. ~~Show a sessions-this-week count, replacing the "Weeks start on Monday" note.~~ Done (`1e897cb`).
+2. ~~On phones, put the quick log first or shrink the stat cards, so the form and button fit on the first screen.~~ Done (`b9d594f`, `bd47a99`).
+3. ~~Add the "stored in this browser" note.~~ Done (`1fc098a`).
+4. Merge or trim the repeated streak and last-session text, and explain how Log differs from Today. Partly done: "Last time" is gone and `/log` is explained (`6a9b318`), but the banner and the Streak card still overlap.
+5. ~~Subject suggestions, toast position on phones, and touch target sizes.~~ Done (`5eeb861`, `02fb941`, `50f00a2`).
 
 ### What I changed
 
-Four fixes followed from the check, one commit each:
+Fixes that followed from the checks, one commit each. The first four came from the first pass:
 
 1. **Session count on the weekly card** (`1e897cb`). The "This week" card shows minutes with the number of sessions since Monday under it, and the "Weeks start on Monday" line is gone. The count sits under the minutes, not on one line like "3 sessions · 2 h 10 min", so it fits on phones.
 2. **Phone first-screen fit** (`b9d594f`). Below the `sm` breakpoint the stat cards sit side by side with smaller numerals and tighter spacing. At 390×844 the Log session button ends at 736 to 821 px in the new, active, at-risk and broken states, so it no longer needs scrolling.
 3. **"Saved in this browser only." note** (`1fc098a`). One line under the quick log form on `/`.
-4. **Repeated text removed, `/log` explained** (`6a9b318`). The banner no longer shows "Last time: …", which Recent already covers, and `/log` has a one-line note that it is the same form as Today, plus notes. After this commit the worst-case button position at 390×844 is 787 px.
+4. **Repeated text removed, `/log` explained** (`6a9b318`). The banner no longer shows "Last time: …", which Recent already covers, and `/log` has a one-line note that it is the same form as Today, plus notes.
 
-Text I touched was rechecked for contrast: 0 failures, lowest ratio 5.01:1.
+Then the items first left for later, and two features:
 
-**Left for later on purpose:**
+5. **44 px tap targets** (`50f00a2`). Chips, nav links and Delete/Yes/No.
+6. **Focus outline** (`6a3210c`). It no longer clips field labels.
+7. **Small phones** (`bd47a99`). The quick log fits at 375×667 and 360×740 as well as 390×844.
+8. **Toast position** (`02fb941`). The message sits in the flow next to the Log button, so it never covers content.
+9. **Subject suggestions** (`5eeb861`). The last four distinct subjects appear as chips under Subject, after the first session.
+10. **Encouragement messages** (`0c8e7f9`). A first-session message, and milestones at 3, 7, 14 and 30 days in the toast and banner.
 
-- Subject suggestions from recent subjects.
-- Toast position, since it still covers part of the list on phones.
-- Tap targets: chips (30 px tall), nav links (28 px) and Delete (32 px) meet WCAG 2.2's 24 px minimum but not the 44 px guideline.
-- The focus outline on the auto-focused Subject field, which clips the label.
-- Smaller phones. The form fit was only checked at 390×844, and at 360×740 and 375×667 the Log button is still below the fold.
-- Editing a session, and exporting or clearing all data.
+And two from the second pass:
 
-(This list is out of date. Everything except editing and export/clear was done afterwards: tap targets `50f00a2`, focus outline `6a3210c`, small phones `bd47a99`, toast position `02fb941`, subject suggestions `5eeb861`. The second pass below covers them.)
+11. **First-session toast reworded** (`3342399`). "Come back tomorrow to keep your streak going.", so it no longer contradicts the banner.
+12. **Session count on History** (`d423145`). "This week: 2 h 10 min · 3 sessions", matching Today.
+
+Text I touched was rechecked for contrast after each round: 0 failures, lowest ratio 5.01:1.
+
+**Left for later:**
+
+- The banner and the Streak card still repeat each other.
+- The milestone message shows in both the toast and the banner.
+- The Monday week and the streak can disagree (3-day streak, 2 sessions this week).
+- Chip casing follows the latest entry, and long subject names make wide chips and long toasts.
+- No "3 of 3" goal state.
+- No editing a session, and no export or clear-all.
 
 ### Second pass
 
