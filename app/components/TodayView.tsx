@@ -28,7 +28,7 @@ function streakNote({ state, count }: Streak): string {
 }
 
 export default function TodayView() {
-  const { ready, sessions, today, weekMinutes, streak } = useSessions();
+  const { ready, sessions, today, weekMinutes, weekSessions, streak } = useSessions();
 
   if (!ready) return <Skeleton />;
 
@@ -41,7 +41,7 @@ export default function TodayView() {
       <WelcomeBanner streak={streak} last={sessions[0]} today={today} />
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <StatCard label="This week" value={formatMinutes(weekMinutes)} note="Weeks start on Monday" />
+        <StatCard label="This week" value={formatMinutes(weekMinutes)} note={plural(weekSessions, "session")} />
         <StatCard label="Streak" value={plural(streakDays, "day")} note={streakNote(streak)} />
       </div>
 

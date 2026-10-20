@@ -51,6 +51,11 @@ export function weeklyMinutes(sessions: Session[], today: string): number {
   return sessions.reduce((sum, s) => (s.date >= monday ? sum + s.minutes : sum), 0);
 }
 
+export function weeklySessions(sessions: Session[], today: string): number {
+  const monday = startOfWeek(today);
+  return sessions.filter((s) => s.date >= monday).length;
+}
+
 export function computeStreak(sessions: Session[], today: string): Streak {
   if (sessions.length === 0) return { state: "new", count: 0 };
 

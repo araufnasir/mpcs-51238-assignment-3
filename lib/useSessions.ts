@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useSyncExternalStore } from "react";
 import { loadSessions, saveSessions } from "./storage";
-import { computeStreak, toDateKey, weeklyMinutes } from "./streak";
+import { computeStreak, toDateKey, weeklyMinutes, weeklySessions } from "./streak";
 import type { Session } from "./streak";
 import type { SessionInput } from "./validation";
 
@@ -70,6 +70,7 @@ export function useSessions() {
     return {
       today,
       weekMinutes: weeklyMinutes(snap.sessions, today),
+      weekSessions: weeklySessions(snap.sessions, today),
       streak: computeStreak(snap.sessions, today),
     };
   }, [snap]);
@@ -82,6 +83,7 @@ export function useSessions() {
     sessions: snap?.sessions ?? [],
     today: derived?.today ?? "",
     weekMinutes: derived?.weekMinutes ?? 0,
+    weekSessions: derived?.weekSessions ?? 0,
     streak: derived?.streak ?? { state: "new" as const, count: 0 },
     add,
     remove,
