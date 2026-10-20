@@ -46,7 +46,7 @@ export default function TodayView() {
       </div>
 
       <Card aria-labelledby="quick-log">
-        <h2 id="quick-log" className="mb-3 text-xl font-normal leading-tight sm:mb-5 sm:text-2xl">
+        <h2 id="quick-log" className="sr-only text-xl font-normal leading-tight sm:not-sr-only sm:mb-5 sm:text-2xl">
           Log a session
         </h2>
         {/* On a first visit there is nothing else to do, so the subject starts focused. */}
