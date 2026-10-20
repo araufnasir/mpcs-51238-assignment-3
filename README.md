@@ -115,6 +115,39 @@ flowchart TD
 
 The streak counts consecutive local calendar days with at least one session, ending today if logged, otherwise ending yesterday. It breaks only when a full day passes with no session.
 
+## Onboarding research
+
+How three apps welcome a new user. Public sources were thin for all three, so each entry separates what was found from what is inference. I did not run the apps myself.
+
+### Toggl Track
+
+- **Found:** Signup is long, with roughly 8 to 10 screens before the app: email, password, name, how you heard about it, industry, signup reason, team members, workspace setup, and billing. After signup, a modal offers exploring alone or a guided tour. The tour uses skippable, resumable tooltips for tracking time and creating projects, then offers a second tour on Reports. The Timer page is the hub.
+- **Not found:** the exact first screen, the empty state, and the time to the first entry.
+- **Inference:** the first timer probably happens inside the tour, about 2 minutes in.
+- Sources: [Appcues GoodUX teardown](https://goodux.appcues.com/blog/toggl-onboarding-tour), [Pageflows recording](https://pageflows.com/post/desktop-web/onboarding/toggl-track/), [Toggl help center](https://support.toggl.com/en-us/article/track-end-user-guide-pcn5n4/).
+
+### Forest
+
+- **Found:** The first screen is an empty patch of ground, a timer, and a tree picker. The first tree takes 3 taps: choose a tree, set the time (default 25 minutes), and tap Start. A new user has no trees and a few starter species, and coins from finished sessions unlock more. Signing in syncs across devices, but no source says an account is required.
+- **Not found:** official onboarding docs, permission prompts, and the empty stats screen.
+- **Unverified:** a single 2019 review reported a few explainer screens and an account prompt after the first session.
+- Sources: [Theory7 guide](https://www.theory7.net/support/en-us/tips-tricks/forest-app-focus-by-planting-trees), [App Store listing](https://apps.apple.com/us/app/forest-focus-for-productivity/id866450515).
+
+### Streaks
+
+- **Found:** The first habit is one short setup: pick a preset or write your own, choose days, choose notifications, then tap Save Task. Notifications are chosen per task, and Health access is requested only for Health-linked tasks. Sync uses iCloud, and the App Store page mentions no sign-in. It is a one-time paid app.
+- **Not found:** the first screen, the empty state, and how streaks look on day one. No fallback app was used because Loop Habit Tracker's sources were just as thin.
+- **Inference:** the first habit takes under a minute.
+- Sources: [App Store listing](https://apps.apple.com/us/app/streaks/id963034692), [The Sweet Setup](https://thesweetsetup.com/how-to-track-your-habits-using-streaks/), [Headway review](https://makeheadway.com/blog/streaks-app-review/).
+
+### Recommendation for the first visit
+
+1. **Start with the action, not a questionnaire.** Forest gets a first result in about 3 taps. Toggl asks 8 to 10 screens of questions first. This app has no account, so there is nothing to ask. The form is the first screen.
+2. **Use defaults and one-tap shortcuts.** Forest defaults to 25 minutes. The minute chips (15 / 25 / 45 / 60) do the same job, so a first session takes a subject, one chip tap, and Log.
+3. **Skip the tour.** Toggl's tour is skippable, but a one-field form doesn't need one. The "Start today" streak and "0 min this week" stats already say what the app does.
+4. **Keep setup to the fields that matter.** Streaks asks for a title, days, and reminders. This app asks for a subject and minutes, and notes are optional.
+5. **Ask for nothing else.** No sign-in, no notification or other permission prompts, and no goal setup.
+
 ## Deploy
 
 Deploy on [Vercel](https://vercel.com/new). No environment variables are needed.
