@@ -36,7 +36,7 @@ export default function TodayView() {
   const streakDays = streak.state === "broken" ? 0 : streak.count;
 
   return (
-    <div className="space-y-5 sm:space-y-8">
+    <div className="space-y-3 sm:space-y-8">
       <h1 className="sr-only">Today</h1>
       <WelcomeBanner streak={streak} />
 
@@ -46,12 +46,12 @@ export default function TodayView() {
       </div>
 
       <Card aria-labelledby="quick-log">
-        <h2 id="quick-log" className={`${type.heading} mb-4 sm:mb-5`}>
+        <h2 id="quick-log" className="mb-3 text-xl font-normal leading-tight sm:mb-5 sm:text-2xl">
           Log a session
         </h2>
         {/* On a first visit there is nothing else to do, so the subject starts focused. */}
         <SessionForm compact autoFocus={sessions.length === 0} />
-        <p className={`${type.bodySmall} mt-3 text-ln-muted`}>Saved in this browser only.</p>
+        <p className={`${type.bodySmall} mt-2 text-ln-muted sm:mt-3`}>Saved in this browser only.</p>
       </Card>
 
       <section aria-labelledby="recent" className="space-y-4">

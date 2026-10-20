@@ -33,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </header>
         <StorageNotice />
-        <main id="main" tabIndex={-1} className="mx-auto w-full max-w-2xl px-5 py-8 focus:outline-none">
+        <main id="main" tabIndex={-1} className="mx-auto w-full max-w-2xl px-5 py-4 focus:outline-none sm:py-8">
           {children}
         </main>
       </body>

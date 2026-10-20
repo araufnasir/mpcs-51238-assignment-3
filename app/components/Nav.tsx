@@ -15,7 +15,7 @@ export default function Nav() {
 
   return (
     <nav aria-label="Main">
-      <ul className="flex gap-6">
+      <ul className="flex gap-1 sm:gap-6">
         {links.map(({ href, label }) => {
           const active = pathname === href;
           return (

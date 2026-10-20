@@ -1,7 +1,6 @@
 import { plural } from "@/lib/format";
 import type { Streak } from "@/lib/streak";
 import Card from "./Card";
-import { type } from "./type";
 
 type Props = { streak: Streak };
 
@@ -28,11 +27,11 @@ export default function WelcomeBanner({ streak }: Props) {
   const { heading, body } = message(streak);
 
   return (
-    <Card aria-label="Welcome" data-streak-state={streak.state}>
+    <Card compact aria-label="Welcome" data-streak-state={streak.state}>
       {/* Stays mounted, so logging a session announces the new streak message. */}
       <div role="status">
-        <h2 className={type.heading}>{heading}</h2>
-        <p className={`${type.body} mt-2`}>{body}</p>
+        <h2 className="text-xl font-normal leading-tight sm:text-2xl">{heading}</h2>
+        <p className="mt-1 text-base leading-snug sm:mt-2 sm:text-lg sm:leading-[1.65]">{body}</p>
       </div>
     </Card>
   );

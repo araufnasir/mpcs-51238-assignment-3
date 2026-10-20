@@ -64,7 +64,7 @@ export default function SessionForm({ compact = false, autoFocus = false }: Prop
 
   return (
     <>
-      <form onSubmit={onSubmit} noValidate className="space-y-6">
+      <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-6">
         <Field
           label="Subject"
           name="subject"
@@ -87,7 +87,7 @@ export default function SessionForm({ compact = false, autoFocus = false }: Prop
             onChange={onChange}
             error={errors.minutes}
           />
-          <div role="group" aria-label="Quick minutes" className="mt-3 flex flex-wrap gap-2">
+          <div role="group" aria-label="Quick minutes" className="mt-2 flex flex-wrap gap-1.5 sm:mt-3 sm:gap-2">
             {QUICK_MINUTES.map((m) => {
               const selected = values.minutes.trim() === String(m);
               return (
