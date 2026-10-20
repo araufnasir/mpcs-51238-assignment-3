@@ -17,7 +17,7 @@ const variants = {
     "border-ln-text bg-transparent text-ln-text enabled:hover:bg-ln-text enabled:hover:text-ln-background",
 };
 
-const sizes = { md: "px-5 py-2.5", sm: "px-3 py-1.5" };
+const sizes = { md: "px-5 py-2.5", sm: "min-h-11 min-w-11 px-3 py-1.5" };
 
 export default function Button({
   variant = "secondary",

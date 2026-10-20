@@ -96,7 +96,7 @@ export default function SessionForm({ compact = false, autoFocus = false }: Prop
                   type="button"
                   aria-pressed={selected}
                   onClick={() => update("minutes", String(m))}
-                  className={`${type.labelSmall} border border-ln-text px-3 py-1.5 transition-colors duration-100 ${focusRing} ${
+                  className={`${type.labelSmall} min-h-11 min-w-11 border border-ln-text px-2.5 py-1.5 transition-colors duration-100 ${focusRing} ${
                     selected ? "bg-ln-text text-ln-background" : "hover:bg-ln-text hover:text-ln-background"
                   }`}
                 >

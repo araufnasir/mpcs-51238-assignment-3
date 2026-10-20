@@ -23,11 +23,15 @@ export default function Nav() {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`${type.label} border-b-2 py-1 ${focusRing} ${
-                  active ? "border-ln-text" : "border-transparent hover:border-ln-muted"
-                }`}
+                className={`${type.label} group flex min-h-11 min-w-11 items-center justify-center ${focusRing}`}
               >
-                {label}
+                <span
+                  className={`border-b-2 py-1 ${
+                    active ? "border-ln-text" : "border-transparent group-hover:border-ln-muted"
+                  }`}
+                >
+                  {label}
+                </span>
               </Link>
             </li>
           );

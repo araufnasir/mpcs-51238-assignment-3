@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <header className="border-b border-ln-text">
-          <div className="mx-auto flex w-full max-w-2xl flex-wrap items-baseline justify-between gap-x-6 gap-y-2 px-5 py-4">
+          <div className="mx-auto flex w-full max-w-2xl flex-wrap items-baseline justify-between gap-x-6 gap-y-2 px-5 py-2">
             <p className="text-2xl font-light tracking-tight">Study Log</p>
             <Nav />
           </div>
