@@ -51,6 +51,7 @@ export default function TodayView() {
         </h2>
         {/* On a first visit there is nothing else to do, so the subject starts focused. */}
         <SessionForm compact autoFocus={sessions.length === 0} />
+        <p className={`${type.bodySmall} mt-3 text-ln-muted`}>Saved in this browser only.</p>
       </Card>
 
       <section aria-labelledby="recent" className="space-y-4">
