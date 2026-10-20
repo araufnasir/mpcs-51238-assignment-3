@@ -11,7 +11,7 @@ export const type = {
 };
 
 /** Large, light numbers for stats. */
-export const numeral = "text-5xl font-extralight leading-none tabular-nums";
+export const numeral = "text-3xl font-extralight leading-none tabular-nums sm:text-5xl";
 
 export const focusRing =
   "focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-ln-text";

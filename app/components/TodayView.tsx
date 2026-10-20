@@ -36,17 +36,17 @@ export default function TodayView() {
   const streakDays = streak.state === "broken" ? 0 : streak.count;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5 sm:space-y-8">
       <h1 className="sr-only">Today</h1>
       <WelcomeBanner streak={streak} last={sessions[0]} today={today} />
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         <StatCard label="This week" value={formatMinutes(weekMinutes)} note={plural(weekSessions, "session")} />
         <StatCard label="Streak" value={plural(streakDays, "day")} note={streakNote(streak)} />
       </div>
 
       <Card aria-labelledby="quick-log">
-        <h2 id="quick-log" className={`${type.heading} mb-5`}>
+        <h2 id="quick-log" className={`${type.heading} mb-4 sm:mb-5`}>
           Log a session
         </h2>
         {/* On a first visit there is nothing else to do, so the subject starts focused. */}
